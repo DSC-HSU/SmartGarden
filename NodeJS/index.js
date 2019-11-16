@@ -1,3 +1,5 @@
+var firebaseConnection = require('./firebaseQuery.js')
+console.log(firebaseConnection)
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline');
 // const port1 = new SerialPort('/dev/cu.usbserial-14220', {
@@ -13,14 +15,34 @@ async function main(){
   const port2 = await getPort();
   // console.log(port2)
   const parser = port2.pipe(new Readline({ delimiter: '\r\n' }),);
-  port2.on("readable",()=>{
-    console.log("readed")
-    parser.on("data",(data)=>{
-      console.log(data)
-    })
-  })
-  port2.write("pump")
+
+  // port2.on("data",()=>{
+  //   console.log("readed")
+  // await port2.write("stoppump")
+  decoy(parser,port2)
+  port2.write("0")
+  // })
   
+ 
+  
+
+}
+
+ function decoy(parser,port2){
+  parser.on("data",(UnFormatedData)=>{
+    let JsonFormatedData = JSON.parse(UnFormatedData);
+    console.log(JsonFormatedData)
+    try {
+      if (JsonFormatedData.hasOwnProperty("temp")) {
+        handleWatering(JsonFormatedData,port2)
+      }
+
+      
+    } catch (error) {
+      
+    }
+  })
+  // port2.write("0")
 }
 // const port2 = SerialPort()
 // const portname=SerialPort.list().then(
@@ -54,6 +76,30 @@ async function serialScan(){
       return ports[i]['path']
     }
   }
+}
+
+function handleWatering(Humninity,port1){
+  console.log(typeof(Humninity))
+  var Pump = false
+  if (Humninity['temp']>35) {
+    //donothing
+    port1.write("pump")
+
+    Pump=true
+  }
+  else{
+    try {
+      firebaseConnection.PushUserData(Humninity)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log('GET sensor TEMP and HUM')
+    port1.write("0")
+    //  autoPush(HumTemp)
+    //trigger watering
+
+  }
+  // ReadSerialJSONTempHum()
 }
 
 

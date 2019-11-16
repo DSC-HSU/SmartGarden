@@ -1,7 +1,6 @@
-import * as FirebaseCredentail from './index.js';
 var admin = require("firebase-admin");
 var serviceAccount = require('./service-account.json');
-admin.initializeApp({
+var FirebaseInitializeApp=admin.initializeApp({
   credential:admin.credential.cert(serviceAccount),
   databaseURL:"https://iot-thcntt1.firebaseio.com"
 }
@@ -41,7 +40,8 @@ function ReadState(){
     return readState;
   }
 
-export {
+module.exports = {
+    db,admin,logNode,serviceAccount,FirebaseInitializeApp,
     PushPumpState,autoPush,PushUserData
 }
 // db.child('timestamp').on('child_changed',(childSnapshot,prevChildKey)=>{
