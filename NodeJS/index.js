@@ -38,7 +38,7 @@ const port2 = new SerialPort(await serialScan(),{
 async function serialScan(){
   let ports = await SerialPort.list();
   for(let i =0;i<ports.length;i++){
-    if (ports[i]['path'].includes('usbserial')) {
+    if (ports[i]['path'].toLowerCase().includes('usb')) {
       return ports[i]['path']
     }
   }
