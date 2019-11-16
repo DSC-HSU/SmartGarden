@@ -11,11 +11,11 @@
 ## 1. Hardware
 In the demo we using the ESP8266 running Arduino software. If you are using Arduino UNO or any Arduino base platform you don't need to install additional ESP8266 Library.
 
-|![ESP8266](docs/ESP8266.png)|
+|![ESP8266](ESP8266.png)|
 |---------|
 | ESP8266|
 
-|![Arduino](docs/ArduinoUNO.png)|
+|![Arduino](ArduinoUNO.png)|
 |---------|
 | Arduino UNO|
 
