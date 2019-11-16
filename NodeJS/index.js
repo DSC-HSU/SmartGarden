@@ -1,68 +1,79 @@
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline');
-const port1 = new SerialPort('/dev/cu.usbserial-14220', {
-  baudRate: 19200,
-  autoOpen:false
-})
-const parser = port1.pipe(new Readline({ delimiter: '\r\n' }),);
-var countering=0
-var portScaning=[]
+// const port1 = new SerialPort('/dev/cu.usbserial-14220', {
+//   baudRate: 19200,
+//   autoOpen:false
+// })
 
+// var countering=0
+// var portScaning=[]
 
-// const port2 = SerialPort()
-const portname=SerialPort.list().then(
-  ports => ports.forEach((portss)=>{
-    let FindingCOM=portss['path']
-    if (FindingCOM.includes('usbserial')) {
-      console.log("found "+ FindingCOM)
-      //  const port2 = new SerialPort(FindingCOM,{
-      //   baudRate:19200,
-      //   autoOpen:true
-      // })
-      return FindingCOM
-      serialWrite("pump")
-    }
-  }),
+async function main(){
   
-)
-const port2 = new SerialPort(portname,{
+  const port2 = await getPort();
+  // console.log(port2)
+  const parser = port2.pipe(new Readline({ delimiter: '\r\n' }),);
+  port2.on("readable",()=>{
+    console.log("readed")
+    parser.on("data",(data)=>{
+      console.log(data)
+    })
+  })
+  port2.write("pump")
+  
+}
+// const port2 = SerialPort()
+// const portname=SerialPort.list().then(
+//   ports => ports.forEach((portss)=>{
+//     let FindingCOM=portss['path']
+//     if (FindingCOM.includes('usbserial')) {
+//       console.log("found "+ FindingCOM)
+//       //  const port2 = new SerialPort(FindingCOM,{
+//       //   baudRate:19200,
+//       //   autoOpen:true
+//       // })
+//       return FindingCOM
+//       serialWrite("pump")
+//     }
+//   }),
+  
+// )
+async function getPort(){
+const port2 = new SerialPort(await serialScan(),{
   baudRate:19200,
   autoOpen:true
-},(err)=>
-console.log(err)
-)
+})
+ return port2;
+}
 
 
 async function serialScan(){
-  let xcx = await SerialPort.list()
-.then((data)=>{
-    ports => ports.forEach((portss)=>{
-      if (portss['comName'].includes('usbserial')) {
-        return portss['comName']
-      }
-  })
-})
-  return xcx
-}
-
-
-
-
-
-
-
-
-
-
-
-async function filterOutPort(AllSerialData){
-  AllSerialData.forEach(Serial => {
-    if (Serial['comName'].include('usbserial')) {
-      return Serial['comName']
+  let ports = await SerialPort.list();
+  for(let i =0;i<ports.length;i++){
+    if (ports[i]['path'].includes('usbserial')) {
+      return ports[i]['path']
     }
-    
-  });
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+// async function filterOutPort(AllSerialData){
+//   AllSerialData.forEach(Serial => {
+//     if (Serial['comName'].include('usbserial')) {
+//       return Serial['comName']
+//     }
+    
+//   });
+// }
 
 // var acx=Tester()
 // console.log(acx)
@@ -199,9 +210,11 @@ var HumTemp
 // // port1.write("0")
 // OpenConnection()
 
-function serialWrite(arg){
-  port2.write(arg,(err)=>{
-    console.log(err)
-  })
-  console.log("write "+arg)
-}
+// function serialWrite(arg){
+//   port2.write(arg,(err)=>{
+//     console.log(err)
+//   })
+//   console.log("write "+arg)
+// }
+
+main();
