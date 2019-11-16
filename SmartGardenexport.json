@@ -1,0 +1,18 @@
+{
+  "counter" : 34,
+  "user" : {
+    "Duybeo" : {
+      "hum" : 70,
+      "pump" : true,
+      "temp" : 25.8
+    },
+    "id" : {
+      "sensor" : {
+        "hum" : 11,
+        "lux" : 300,
+        "pump" : 1,
+        "temp" : 22
+      }
+    }
+  }
+}
