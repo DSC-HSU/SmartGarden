@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="205.335" height="209.815" viewBox="0 0 205.335 209.815">
+  <g id="Plant_Dirt" data-name="Plant+ Dirt" transform="translate(-90 -86.185)">
+    <g id="plant" transform="translate(90 64.617)">
+      <g id="Group_1" data-name="Group 1" transform="translate(0 21.568)">
+        <path id="Path_1" data-name="Path 1" d="M82.546,41.577C64.607,23.647,29.5,21.568,4.662,21.568A4.662,4.662,0,0,0,0,26.23c0,24.849,2.079,59.954,20.009,77.894A43.414,43.414,0,0,0,50.7,115.08a46.492,46.492,0,0,0,31.851-10.956C95.908,90.753,98.36,57.391,82.546,41.577Z" transform="translate(0 -21.568)" fill="#4caf50"/>
+        <path id="Path_2" data-name="Path 2" d="M344.676,63.765c-24.849,0-59.954,2.079-77.894,20.009-15.851,15.851-13.362,49.166,0,62.537a46.5,46.5,0,0,0,31.86,10.956,43.423,43.423,0,0,0,30.686-10.956c17.939-17.939,20.009-53.045,20.009-77.894A4.662,4.662,0,0,0,344.676,63.765Z" transform="translate(-144.002 -45.322)" fill="#4caf50"/>
+      </g>
+      <path id="Path_3" data-name="Path 3" d="M146.02,256.166a4.662,4.662,0,0,1-4.662-4.662c0-98.882-36.261-123.694-49.912-133.027a36.451,36.451,0,0,1-4.662-3.534,4.662,4.662,0,0,1,6.592-6.592,28.711,28.711,0,0,0,3.338,2.434c12.121,8.289,40.672,27.823,50.546,91.9a111.722,111.722,0,0,1,61.334-76.262,5.044,5.044,0,0,1,6.527,2.061,4.327,4.327,0,0,1-1.627,5.9c-.078.044-.157.086-.238.125l-.755.354c-51.115,24.028-61.847,76.691-61.847,116.645A4.662,4.662,0,0,1,146.02,256.166Z" transform="translate(-48.116 -48.116)" fill="#388e3c"/>
+    </g>
+    <circle id="Ellipse_36" data-name="Ellipse 36" cx="5.5" cy="5.5" r="5.5" transform="translate(193 282)" fill="#202020"/>
+    <circle id="Ellipse_34" data-name="Ellipse 34" cx="5" cy="5" r="5" transform="translate(155 279)" fill="#6d4b41"/>
+    <circle id="Ellipse_32" data-name="Ellipse 32" cx="5.5" cy="5.5" r="5.5" transform="translate(186 280)" fill="#202020"/>
+    <circle id="Ellipse_20" data-name="Ellipse 20" cx="5.5" cy="5.5" r="5.5" transform="translate(188 278)" fill="#202020"/>
+    <circle id="Ellipse_31" data-name="Ellipse 31" cx="5.5" cy="5.5" r="5.5" transform="translate(161 276)" fill="#5d4036"/>
+    <circle id="Ellipse_30" data-name="Ellipse 30" cx="7" cy="7" r="7" transform="translate(176 276)" fill="#202020"/>
+    <circle id="Ellipse_28" data-name="Ellipse 28" cx="7.5" cy="7.5" r="7.5" transform="translate(167 270)" fill="#6d4b41"/>
+    <circle id="Ellipse_26" data-name="Ellipse 26" cx="7" cy="7" r="7" transform="translate(205 276)" fill="#202020"/>
+    <circle id="Ellipse_25" data-name="Ellipse 25" cx="6" cy="6" r="6" transform="translate(200 282)" fill="#4d332e"/>
+    <circle id="Ellipse_17" data-name="Ellipse 17" cx="7" cy="7" r="7" transform="translate(172 274)" fill="#202020"/>
+    <circle id="Ellipse_18" data-name="Ellipse 18" cx="7.5" cy="7.5" r="7.5" transform="translate(176 281)" fill="#6d4b41"/>
+    <circle id="Ellipse_8" data-name="Ellipse 8" cx="7.5" cy="7.5" r="7.5" transform="translate(197 270)" fill="#4d332e"/>
+    <circle id="Ellipse_11" data-name="Ellipse 11" cx="6" cy="6" r="6" transform="translate(184 272)" fill="#4d332e"/>
+    <circle id="Ellipse_27" data-name="Ellipse 27" cx="5.5" cy="5.5" r="5.5" transform="translate(212 282)" fill="#5d4036"/>
+    <circle id="Ellipse_22" data-name="Ellipse 22" cx="6" cy="6" r="6" transform="translate(177 269)" fill="#5d4036"/>
+    <circle id="Ellipse_14" data-name="Ellipse 14" cx="6" cy="6" r="6" transform="translate(194 277)" fill="#6d4b41"/>
+    <circle id="Ellipse_12" data-name="Ellipse 12" cx="6.5" cy="6.5" r="6.5" transform="translate(188 268)" fill="#5d4036"/>
+    <circle id="Ellipse_29" data-name="Ellipse 29" cx="4.5" cy="4.5" r="4.5" transform="translate(210 287)" fill="#6d4b41"/>
+    <circle id="Ellipse_33" data-name="Ellipse 33" cx="4.5" cy="4.5" r="4.5" transform="translate(159 285)" fill="#6d4b41"/>
+    <circle id="Ellipse_35" data-name="Ellipse 35" cx="4" cy="4" r="4" transform="translate(166 281)" fill="#202020"/>
+    <circle id="Ellipse_23" data-name="Ellipse 23" cx="6" cy="6" r="6" transform="translate(166 284)" fill="#4d332e"/>
+  </g>
+</svg>
