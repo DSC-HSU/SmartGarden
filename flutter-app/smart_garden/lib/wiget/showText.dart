@@ -16,7 +16,7 @@ class showTextWithOption extends StatelessWidget {
 
     // TODO: implement build
     return Container(
-        padding: EdgeInsets.all(0),
+        // padding: EdgeInsets.all(0),
         // alignment: Alignment.center,
         width: 150,
         height: 45,
