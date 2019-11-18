@@ -6,15 +6,14 @@ class showTextWithOption extends StatelessWidget {
   final String notation;
   GlobalKey vaule_key = GlobalKey();
   showTextWithOption(this.vaule, this.specialChar, this.notation);
-  
   @override
   Widget build(BuildContext context) {
-    double spacing=30;
-    bool overflowVaule_dectector= false;
+    double spacing = 30;
+    bool overflowVaule_dectector = false;
     if (this.vaule.length >= 3) {
-      overflowVaule_dectector=true;
+      overflowVaule_dectector = true;
     }
-    
+
     // TODO: implement build
     return Container(
         padding: EdgeInsets.all(0),
@@ -32,13 +31,13 @@ class showTextWithOption extends StatelessWidget {
             ),
           ),
           Positioned(
-              left: overflowVaule_dectector?spacing+40:50,
+              left: overflowVaule_dectector ? spacing + 40 : 50,
               // top: 20,
               child: Text(
                 this.specialChar,
               )),
           Positioned(
-              left: overflowVaule_dectector?spacing+55:64,
+              left: overflowVaule_dectector ? spacing + 55 : 64,
               // top: 20,
               child: Text(
                 this.notation,
