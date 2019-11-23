@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "firebase-admin": "^8.7.0",
-    "serialport": "^8.0.5"
+    "serialport": "^8.0.5",
+    "socket.io": "^2.3.0"
   }
 }
