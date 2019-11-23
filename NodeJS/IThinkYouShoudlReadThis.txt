@@ -1,0 +1,7 @@
+This is a note for the Server and the Client 
++ io.on('connection') is for handle the every connection that connect to 
+    socket (which is the sever is listen) [IPAddress:PortNumber] 
++ socket.on is you know
+
+
+Ideas: Do we need to build a website statistic for the app, I think it is too much
