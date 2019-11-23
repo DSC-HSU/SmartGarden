@@ -6,6 +6,9 @@
 //     databaseURL:"https://iot-thcntt1.firebaseio.com"
 // });
 //create a http server 
+// const Firebase = require('firebase')("https://iot-thcntt1.firebaseio.com")
+
+
 const app = require('express')();  
 const server =  require('http').Server(app); 
 //add socket io to the server 
@@ -17,26 +20,32 @@ server.listen(8000,'127.0.0.1',()=>{
 //How to know what should send data to the server
 //Restful api
 
-app.get('/',(req,res)=>{
-  res.send("<h1>Hello you fucking piece of shit</h1>")//a test
-});
 
-//RasPi need to talk to the server on port 80 
+//RasPi need to talk to the server on port 8000 
 //First build the handler for the incoming connection for the RasPi
 
 
 //Handle the information send to server from RasPi 
 io.on('connection',(socket)=>{ //when RasPi connected to port 8000 
   console.log('Rasberry Pi [Connected]',socket.id)
-
+  //io.sockets.emit: send to all connected client
+  
   socket.on('sendDataToTheServer',(data) => {
-    io.sockets.emit('sendDataToTheServer') //recieve data from Ras then broadcast it to all the node
-    console.log('Data sent: ' + JSON.stringify(data)+ ' by ' + '['+socket.id +']')  
-    io.emit('sendDataToServer',{respond:'Good!'})
-    io.to('Firesbase').emit('sendDataToTheServer',(data)=>{
-      
-    }) //send the data to the server not all the node 
+    io.sockets.emit('serverDataReceived',{Server:'Data Received!'})
+    console.log('Data sent: ' + JSON.stringify(data)+ ' by ' + '['+socket.id +']') 
+    
   });
+
+
+  //Sending log to the firebase, listen to the sendDataToServer 
+  //and then use that data and send it to firebase
+  // socket.on('sendDataToTheSever',(firebaseLogData)=>{
+  //   //send only to the firebase that connect to the server
+  //   //Will use the data
+  //   Firebase.on("value", ()=>{
+  //     io.Firebase.emit('')
+  //   })
+  // })
 
   //indicate the ras has been disconnected from the server 
   socket.on('disconnect',(data)=>{

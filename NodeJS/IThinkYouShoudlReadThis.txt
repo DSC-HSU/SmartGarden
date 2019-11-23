@@ -6,6 +6,10 @@ This is a note for the Server and the Client
 
 Ideas: Do we need to build a website statistic for the app, I think it is too much
 
+#we can create more than 2 room in one socket 
+
+
+
 One socket but diffenrent Room
     + One is firebase
     + One is all client except the RasPi
