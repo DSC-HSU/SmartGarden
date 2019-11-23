@@ -5,3 +5,11 @@ This is a note for the Server and the Client
 
 
 Ideas: Do we need to build a website statistic for the app, I think it is too much
+
+One socket but diffenrent Room
+    + One is firebase
+    + One is all client except the RasPi
+    + I think one more room only for the RasPi sending ack for the Ras that the server
+    is recv the data
+    + 
+All the log from the RasPi will be send to firebase using JSON.stringfy 
