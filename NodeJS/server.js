@@ -25,17 +25,36 @@ server.listen(8000,'127.0.0.1',()=>{
 //First build the handler for the incoming connection for the RasPi
 
 
-//Handle the information send to server from RasPi 
-io.on('connection',(socket)=>{ //when RasPi connected to port 8000 
-  console.log('Rasberry Pi [Connected]',socket.id)
-  //io.sockets.emit: send to all connected client
-  
-  socket.on('sendDataToTheServer',(data) => {
-    io.sockets.emit('serverDataReceived',{Server:'Data Received!'})
-    console.log('Data sent: ' + JSON.stringify(data)+ ' by ' + '['+socket.id +']') 
-    
-  });
+let clients = 0
 
+
+
+
+//Handle the information send to server from RasPi 
+io.on('connection',(socket)=>{ //when RasPi connected to port 8000
+  clients++;
+  console.log('Rasberry Pi [Connected]',socket.id)
+  socket.on('PhoneRoomJoin',(room)=>{
+    console.log("A Phone has connected",room)
+    socket.join(room,()=>{
+      console.log(socket.rooms)
+      
+    })
+  })  
+  
+  setInterval(()=>{
+    console.log("Current User: "+ clients)
+  },5000)
+  //io.sockets.emit: send to all connected client
+
+  socket.on('sendDataToTheServer',(data) => {
+    //send acknowledgement to the RasOnly
+    //send this too RasOnly 
+    let dataJSON = JSON.stringify(data) 
+    socket.emit('serverDataReceived',{Server:'Data Received!'})
+    console.log('Data sent: ' + dataJSON + ' by ' + '['+socket.id +']') 
+    socket.to('PhoneRoomJoin').emit('serverDataToPhoneClient', 'Khuong')
+  });
 
   //Sending log to the firebase, listen to the sendDataToServer 
   //and then use that data and send it to firebase
@@ -46,14 +65,10 @@ io.on('connection',(socket)=>{ //when RasPi connected to port 8000
   //     io.Firebase.emit('')
   //   })
   // })
-
   //indicate the ras has been disconnected from the server 
   socket.on('disconnect',(data)=>{
+    clients--;
     console.log('Rasberry Pi ' + '['+socket.id+'] '+'[Disconnected]' )
   });            
 });
 
-
-
-//Send the data to the firebase and the clientPhone
-//Logging all the traffic between RasPi and the Server
