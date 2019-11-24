@@ -17,26 +17,23 @@ var counter = 0
 //     console.log(data)
 // })
 // socket.nsp='/duy'
-socket.on('duybeo',(data)=>
-{
-    console.log(data);
-    // socket.emit('duy123',"hello")
-})
+// socket.on('duybeo',(data)=>
+// {
+//     console.log(data);
+//     // socket.emit('duy123',"hello")
+// })
 
 
-setInterval(()=>{
-    socket.emit('duy123',{
-        'hi': "form Raspberry Pi" + counter++
-    })
-},2000)
+// setInterval(()=>{
+//     socket.emit('duy123',{
+//         'hi': "form Raspberry Pi" + counter++
+//     })
+// },2000)
 
+function EmitData(chanel,data){
+    socket.emit(chanel,data)
+}
 
-// function main(){
-    
-//     console.log(socket)
-//     // socket.on('')
-// }
-
-// module.exports={
-//     EmitData
-// }
+module.exports={
+    EmitData
+}
