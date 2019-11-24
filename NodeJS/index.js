@@ -1,6 +1,5 @@
 // var firebaseConnection = require('./src/firebaseQuery.js')
 var socketConnection = require('./src/socketIO_Pushdata.js');
-// console.log(firebaseConnection)
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline');
 async function main(){
@@ -10,7 +9,6 @@ async function main(){
   port2.write("0")
 
 }
-
  function decoy(parser,port2){
   parser.on("data",(UnFormatedData)=>{
     let JsonFormatedData = JSON.parse(UnFormatedData);
@@ -19,12 +17,13 @@ async function main(){
       if (JsonFormatedData.hasOwnProperty("temp")) {
         handleWatering(JsonFormatedData,port2)
       }
-
-      
     } catch (error) {
-      
+      console.log(error)
     }
-  })
+    console.log("clean cache")
+    JsonFormatedData=[]
+  }
+  )
 }
 
 async function getPort(){
@@ -34,8 +33,6 @@ const port2 = new SerialPort(await serialScan(),{
 })
  return port2;
 }
-
-
 async function serialScan(){
   let ports = await SerialPort.list();
   for(let i =0;i<ports.length;i++){
@@ -47,27 +44,19 @@ async function serialScan(){
 
 function handleWatering(Humninity,port1){
   console.log(typeof(Humninity))
-  var Pump = false
-  if (Humninity['temp']>35) {
-    port1.write("pump")
-
-    Pump=true
+  if (Humninity['soildhum']>700) {
+    port1.write("1")
   }
   else{
-    try {
-      //Firebase version
-      // firebaseConnection.PushUserData(Humninity)
-
-      // Socket Version
-      socketConnection.EmitData('iot-flutter-demo',Humninity)
-
-    } catch (error) {
-      console.log(error)
-    }
     console.log('GET sensor TEMP and HUM')
     port1.write("0")
-
   }
+  //Firebase version
+
+  // firebaseConnection.PushUserData(Humninity)
+
+  // Socket Version
+  socketConnection.EmitData('iot-flutter-demo',Humninity)
 }
 
 
