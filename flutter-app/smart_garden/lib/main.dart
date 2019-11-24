@@ -1,10 +1,11 @@
 import 'dart:ffi';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_garden/wiget/showText.dart';
+import 'package:smart_garden/wiget/stream_showText.dart';
 void main() => runApp(MyApp());
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
   @override
   Widget build(BuildContext context) {
     var backgourndColor = Color.fromRGBO(144, 144, 144, 1.0);
@@ -33,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Positioned(
               top: _height*8/100,
-              left: 100,
+              left: _width*25/100,
               child: SvgPicture.asset('assets/plan_dirt.svg'),
             ),
             Align(
@@ -52,12 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Positioned(
               left: _width*10/100,
               top: _height*45/100
-              ,child:showTextWithOption("99", "o", "C")
+              ,child:showTextWithOption('user/linh/temp',"o", "C")
             ),
             Positioned(
               left: _width*10/100,
-              top: _height*53/100
-              ,child:showTextWithOption("100", "%", "H")
+              top: _height*56 /100
+              ,child:showTextWithOption('user/linh/hum',"%", "H")
             ),
             FloatingActionButton(
               child: Text("Click"),
@@ -66,6 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 print("height " + _height.toString());
               },
             )
+          ,
+          // Positioned(
+          //   top: _height*50/100,
+          //   left: 100,
+          //   child: Container(
+          //   child: streamshowTextWithOption(),
+          // ),
+          // )
+          
           ],
         ),
       );
