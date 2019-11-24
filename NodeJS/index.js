@@ -1,4 +1,5 @@
-var firebaseConnection = require('./firebaseQuery.js')
+// var firebaseConnection = require('./src/firebaseQuery.js')
+var socketConnection = require('./src/socketIO_Pushdata.js');
 // console.log(firebaseConnection)
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline');
@@ -54,7 +55,12 @@ function handleWatering(Humninity,port1){
   }
   else{
     try {
-      firebaseConnection.PushUserData(Humninity)
+      //Firebase version
+      // firebaseConnection.PushUserData(Humninity)
+
+      // Socket Version
+      socketConnection.EmitData('iot-flutter-demo',Humninity)
+
     } catch (error) {
       console.log(error)
     }
