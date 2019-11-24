@@ -11,11 +11,11 @@ http.listen(8000,"0.0.0.0", function(){
   });
 
 io.on('connection', function(socket){
-  console.log('a user connected' + socket.id);
+  console.log('a user connected :' + socket.id);
   console.log(socket.nsp.name)
 //   socket.broadcast.emit("hi there")
 //   console.log(socket.id)
-    socket.on('duy123',(data)=>{
+    socket.on('iot-flutter-demo',(data)=>{
         console.log(data)
     })
 });
@@ -28,15 +28,15 @@ io.on('connection', function(socket){
 //     console.log(data)
 // })
 
-io.sockets.on('love',(data)=>{
-    console.log(data)
-})
+// io.sockets.on('love',(data)=>{
+//     console.log(data)
+// })
 
 // io.sockets.on()
 
-io.on('duychicken',(data)=>{
-    console.log(data)
-})
+// io.on('duychicken',(data)=>{
+//     console.log(data)
+// })
 
 
 var counter = 1
@@ -50,10 +50,14 @@ function Emitdata(){
         'love':"ya",
         'form':'khuong the guys with a hacker'
     });
+    io.sockets.emit('test-chancel',{
+        'hum':counter++,
+        'temp':counter++
+    })
 }
 
 setInterval(()=>{
     Emitdata()
-},2000)
+},1000)
 
 
