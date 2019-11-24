@@ -1,5 +1,6 @@
-// const socket = require('socket.io-client')('http://35.213.149.38:8000');
-const socket = require('socket.io-client')('http://127.0.0.1:8000');
+const socket = require('socket.io-client')('http://35.213.149.38:8000');
+// const socket = require('socket.io-client')('http://127.0.0.1:8000');
+
 socket.io.autoConnect=true
 var counter = 0
 // import io from 'socket.io-client';
@@ -36,6 +37,6 @@ setInterval(()=>{
 //     // socket.on('')
 // }
 
-module.exports={
-    EmitData
-}
+// module.exports={
+//     EmitData
+// }
