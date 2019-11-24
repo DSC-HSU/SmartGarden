@@ -11,42 +11,40 @@ float t =0;
 float soildHum=0;
 void setup() {
   // put your setup code here, to run once:
+  digitalWrite(pumPin,LOW); // Turn off the Pump by default 
   Serial.begin(19200);
   pinMode(A0, INPUT);
   pinMode(pumPin,OUTPUT);
   dht.begin();
   delay(700);
-  digitalWrite(pumPin,LOW);
-  
 }
 
 void loop() {
+  // start Reeding soildHum as loop cause soild huminity has slow response time
+  soildHum = analogRead(A0);
   if(Serial.available()){
       answer=Serial.readString();
       if(answer=="0"){
+           digitalWrite(pumPin,LOW);
            h = dht.readHumidity();
            t= dht.readTemperature();
+           
            if (isnan(h) || isnan(t)){ 
             return;
            }else{
-            Serial.println("{\"temp\":"+ String(t)+",\"hum\":"+String(h)+"}");
+            Serial.println("{\"temp\":"+ String(t)+",\"hum\":"+String(h)+",\"soildhum\":"+String(soildHum)+",\"pump\":"+"0"+"}");
            }
         }
-      if(answer=="pump"){
-          digitalWrite(pumPin,HIGH);
-          Serial.println("{\"pump\":"+String(true)+"}");
-           return;
-        }
-      if(answer=="stoppump"){
-          digitalWrite(pumPin,LOW);
-          Serial.println("{\"pump\":"+String(false)+"}");
-           return;
-        }
-      if(answer=="soildhum"){
-          soildHum = analogRead(A0);
-          Serial.println("{\"soildhum\":"+String(soildHum)+"}");
-           return;
-        }
-      
+      if(answer=="1"){
+           digitalWrite(pumPin,HIGH);
+           h = dht.readHumidity();
+           t= dht.readTemperature();
+           
+           if (isnan(h) || isnan(t)){ 
+            return;
+           }else{
+            Serial.println("{\"temp\":"+ String(t)+",\"hum\":"+String(h)+",\"soildhum\":"+String(soildHum)+",\"pump\":"+"1"+"}");
+           }
+        }    
     }
 }
