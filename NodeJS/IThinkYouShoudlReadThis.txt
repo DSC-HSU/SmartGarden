@@ -10,10 +10,20 @@ Ideas: Do we need to build a website statistic for the app, I think it is too mu
 
 
 
-One socket but diffenrent Room
+One socket but 3 Room
     + One is firebase
     + One is all client except the RasPi
     + I think one more room only for the RasPi sending ack for the Ras that the server
     is recv the data
-    + 
 All the log from the RasPi will be send to firebase using JSON.stringfy 
+
+
+------------------------------WHAT HAPPEN-------------------------------------
+Server output:
+    + Client (all the phones that are connected, actually one but hey ...)
+    + Firebase (log all the data input by the RasPi)
+
+Server input: 
+    + RasPi (only received acknowledgement from the server)
+
+-----------------------------
