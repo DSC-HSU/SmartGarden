@@ -4,9 +4,11 @@ const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline');
 async function main(){
   const port2 = await getPort();
-  const parser = port2.pipe(new Readline({ delimiter: '\r\n' }),);
+  const parser = port2.pipe(new Readline({ delimiter: '\n' }),);
   decoy(parser,port2)
-  port2.write("0")
+  // On the Arduino when call serial comunication frist 
+  //time took few secound to reboot
+  setTimeout(()=>port2.write("0"),3000)
 
 }
  function decoy(parser,port2){
@@ -35,7 +37,7 @@ const port2 = new SerialPort(await serialScan(),{
 }
 async function serialScan(){
   let ports = await SerialPort.list();
-  for(let i =0;i<ports.length;i++){
+  for(let i =0;i<=ports.length;i++){
     if (ports[i]['path'].toLowerCase().includes('usb')) {
       return ports[i]['path']
     }
@@ -66,8 +68,6 @@ function handleWatering(Humninity,port1){
 
 
 
-
-
-
-
 main();
+
+//https://www.raspberrypi.org/forums/viewtopic.php?t=150981
