@@ -7,8 +7,7 @@
 // });
 //create a http server 
 // const Firebase = require('firebase')("https://iot-thcntt1.firebaseio.com")
-
-
+ 
 const app = require('express')();  
 const server =  require('http').Server(app); 
 //add socket io to the server 
@@ -16,11 +15,8 @@ const io = require('socket.io')(server);
 server.listen(8000,'127.0.0.1',()=>{
   console.log("[*] Server is running at http://127.0.0.1:8000")
 }); //listen for connection 
-
 //How to know what should send data to the server
 //Restful api
-
-
 //RasPi need to talk to the server on port 8000 
 //First build the handler for the incoming connection for the RasPi
 
@@ -31,7 +27,7 @@ let clients = 0
 
 
 //Handle the information send to server from RasPi 
-io.on('connection',(socket)=>{ //when RasPi connected to port 8000
+io.sockets.on('connection',(socket)=>{ //when RasPi connected to port 8000
   clients++;
   console.log('Rasberry Pi [Connected]',socket.id)
   socket.on('PhoneRoomJoin',(room)=>{
@@ -53,7 +49,7 @@ io.on('connection',(socket)=>{ //when RasPi connected to port 8000
     let dataJSON = JSON.stringify(data) 
     socket.emit('serverDataReceived',{Server:'Data Received!'})
     console.log('Data sent: ' + dataJSON + ' by ' + '['+socket.id +']') 
-    socket.to('PhoneRoomJoin').emit('serverDataToPhoneClient', 'Khuong')
+    io.sockets.emit('serverDataToPhoneClient', dataJSON)
   });
 
   //Sending log to the firebase, listen to the sendDataToServer 
