@@ -15,7 +15,7 @@ io.on('connection', function(socket){
   console.log('a user connected :' + socket.id);
   console.log(socket.nsp.name)
     socket.on('iot-flutter-demo',(data)=>{
-        firebaseConnection.autoPush(data,'iot-flutter-demo')
+        firebaseConnection.autoPush(data,socket.id)
         console.log(data)
         io.sockets.emit('iot-flutter-demo',data)
     })
