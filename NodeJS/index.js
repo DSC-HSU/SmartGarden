@@ -39,7 +39,7 @@ async function serialScan(){
   let ports = await SerialPort.list();
   for(let i =0;i<=ports.length;i++){
     if (ports[i]['path'].toLowerCase().includes('usb')
-    ||ports[i]['path'].toLowerCase().includes('ACM0')) {
+    ||ports[i]['path'].toLowerCase().includes('acm0')) {
       return ports[i]['path']
     }
   }
