@@ -1,5 +1,6 @@
 var admin = require("firebase-admin");
-var serviceAccount = require('./service-account.json');
+var serviceAccount = require('../service-account.json');
+// console.log(serviceAccount)
 var FirebaseInitializeApp=admin.initializeApp({
   credential:admin.credential.cert(serviceAccount),
   databaseURL:"https://iot-thcntt1.firebaseio.com"
@@ -22,9 +23,9 @@ function PushPumpState(data) {
         }
     )
 }
-function autoPush(LogData){
+function autoPush(LogData,UserID){
     let timeset = new Date
-    logNode.child('test').child(timeset.toString()).set(
+    logNode.child(UserID).child(timeset.toString()).set(
       LogData
     )
 }
