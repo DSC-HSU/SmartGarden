@@ -1,4 +1,3 @@
-// var firebaseConnection = require('./src/firebaseQuery.js')
 var socketConnection = require('./src/socketIO_Pushdata.js');
 const SerialPort = require('serialport')
 const Readline = require('serialport/lib/parsers').Readline;
