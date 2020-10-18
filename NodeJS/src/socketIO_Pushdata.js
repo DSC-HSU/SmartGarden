@@ -1,7 +1,12 @@
-const socket = require('socket.io-client')('http://34.80.236.168:8000');
+const socket = require('socket.io-client');
+
+const socketClient = socket.connect('http://34.80.236.168:8000')
+// const socketClient = socket.connect('http://127.0.0.1:8000')
+
+
 // const socket = require('socket.io-client')('http://127.0.0.1:8000');
 
-socket.io.autoConnect = true
+socketClient.io.autoConnect = true
 var counter = 0
 // import io from 'socket.io-client';
 // const socket = require('socket.io-client')
@@ -31,7 +36,7 @@ var counter = 0
 // },2000)
 
 function EmitData(chanel, data) {
-    socket.emit(chanel, data)
+    socketClient.emit(chanel, data)
 }
 
 module.exports = {
