@@ -1,17 +1,23 @@
 var admin = require("firebase-admin");
-var serviceAccount = require('./service-account.json');
+var serviceAccount = require('../service-account.json');
+// console.log(serviceAccount)
 var FirebaseInitializeApp=admin.initializeApp({
   credential:admin.credential.cert(serviceAccount),
   databaseURL:"https://iot-thcntt1.firebaseio.com"
 }
 );
 var db = admin.database();
-
-var logNode= db.ref('/log')
+var dbFire = admin.firestore();
+// var logNode= db.ref('/log')
 function PushUserData(FullSensordataAsJSON, UserID = 'Duybeo') {
-    db.ref('user').child(UserID).update(
-        FullSensordataAsJSON
-    )
+  dbFire.collection('user').doc(UserID).add(FullSensordataAsJSON)
+}
+function FireStore_PushUserData(FullSensordataAsJSON, UserID = 'Duybeo') {
+  db.ref('user').child(UserID).update(
+    FullSensordataAsJSON
+)
+
+  
 }
 function PushPumpState(data) {
     db.ref('user').child('Duybeo').update(
@@ -22,9 +28,9 @@ function PushPumpState(data) {
         }
     )
 }
-function autoPush(LogData){
+function autoPush(LogData,UserID){
     let timeset = new Date
-    logNode.child('test').child(timeset.toString()).set(
+    logNode.child(UserID).child(timeset.toString()).set(
       LogData
     )
 }
@@ -41,7 +47,7 @@ function ReadState(){
   }
 
 module.exports = {
-    db,admin,logNode,serviceAccount,FirebaseInitializeApp,
+    db,admin,serviceAccount,FirebaseInitializeApp,
     PushPumpState,autoPush,PushUserData
 }
 // db.child('timestamp').on('child_changed',(childSnapshot,prevChildKey)=>{

@@ -1,3 +1,4 @@
+var firebaseConnection = require('../firebaseQuery.js')
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
@@ -11,34 +12,14 @@ http.listen(8000,"0.0.0.0", function(){
   });
 
 io.on('connection', function(socket){
-  console.log('a user connected' + socket.id);
+  console.log('a user connected :' + socket.id);
   console.log(socket.nsp.name)
-//   socket.broadcast.emit("hi there")
-//   console.log(socket.id)
-    socket.on('duy123',(data)=>{
+    socket.on('iot-flutter-demo',(data)=>{
+        firebaseConnection.autoPush(data,socket.id)
         console.log(data)
+        io.sockets.emit('iot-flutter-demo',data)
     })
 });
-
-// io.on('duy123',(data)=>{
-//     console.log(data)
-// })
-
-// io.sockets.on('duy123',(data)=>{
-//     console.log(data)
-// })
-
-io.sockets.on('love',(data)=>{
-    console.log(data)
-})
-
-// io.sockets.on()
-
-io.on('duychicken',(data)=>{
-    console.log(data)
-})
-
-
 var counter = 1
 function Emitdata(){
     
@@ -50,10 +31,14 @@ function Emitdata(){
         'love':"ya",
         'form':'khuong the guys with a hacker'
     });
+    io.sockets.emit('test-chancel',{
+        'hum':counter++,
+        'temp':counter++
+    })
 }
 
 setInterval(()=>{
     Emitdata()
-},2000)
+},1000)
 
 

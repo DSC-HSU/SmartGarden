@@ -25,7 +25,6 @@ class showTextWithOption extends StatelessWidget {
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.active) {
             istrigger=!istrigger;
-            print(snap.data);
             print(snap.data.snapshot.value);
             var data = snap.data.snapshot.value.toString();
             var data_lenght = data.length;
@@ -80,6 +79,14 @@ class showTextWithOption extends StatelessWidget {
                     ],
                   ),
                 ));
+          }
+           else{
+            return CircularProgressIndicator();
+          }
+        });
+  
+        }
+}
                 // child: Container(
                 //   child: Stack(children: <Widget>[
                 //     Positioned(
@@ -115,11 +122,3 @@ class showTextWithOption extends StatelessWidget {
                 //   ]
                 //   ),
                 // )
-          }
-           else{
-            return Text("Not Functioning");
-          }
-        });
-  
-        }
-}
