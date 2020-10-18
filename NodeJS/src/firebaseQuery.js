@@ -7,12 +7,17 @@ var FirebaseInitializeApp=admin.initializeApp({
 }
 );
 var db = admin.database();
-
-var logNode= db.ref('/log')
+var dbFire = admin.firestore();
+// var logNode= db.ref('/log')
 function PushUserData(FullSensordataAsJSON, UserID = 'Duybeo') {
-    db.ref('user').child(UserID).update(
-        FullSensordataAsJSON
-    )
+  dbFire.collection('user').doc(UserID).add(FullSensordataAsJSON)
+}
+function FireStore_PushUserData(FullSensordataAsJSON, UserID = 'Duybeo') {
+  db.ref('user').child(UserID).update(
+    FullSensordataAsJSON
+)
+
+  
 }
 function PushPumpState(data) {
     db.ref('user').child('Duybeo').update(
@@ -42,7 +47,7 @@ function ReadState(){
   }
 
 module.exports = {
-    db,admin,logNode,serviceAccount,FirebaseInitializeApp,
+    db,admin,serviceAccount,FirebaseInitializeApp,
     PushPumpState,autoPush,PushUserData
 }
 // db.child('timestamp').on('child_changed',(childSnapshot,prevChildKey)=>{
