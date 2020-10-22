@@ -1,7 +1,7 @@
 const socket = require('socket.io-client');
 
-const socketClient = socket.connect('http://34.80.236.168:8000')
-// const socketClient = socket.connect('http://127.0.0.1:8000')
+// const socketClient = socket.connect('http://34.80.236.168:8000')
+const socketClient = socket.connect('http://127.0.0.1:8000')
 
 
 // const socket = require('socket.io-client')('http://127.0.0.1:8000');
@@ -39,6 +39,13 @@ function EmitData(chanel, data) {
     socketClient.emit(chanel, data)
 }
 
+function onPumpRequest(callback) {
+    socketClient.on("iot-flutter-demo-phone-to-garden", (data) => {
+        let dataJSON = JSON.parse(data);
+        callback(dataJSON.tooglePump);
+    })
+}
+
 module.exports = {
-    EmitData
+    EmitData, onPumpRequest
 }

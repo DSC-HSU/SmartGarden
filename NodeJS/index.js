@@ -1,6 +1,7 @@
-var socketConnection = require('./src/socketIO_Pushdata.js');
+const socketConnection = require('./src/socketIO_Pushdata.js');
 const SerialPort = require('serialport')
-const Readline = require('serialport/lib/parsers').Readline;
+const Readline = require('@serialport/parser-readline')
+var isPumpToggle = false;
 async function main() {
   const port2 = await getPort();
   console.log(port2)
@@ -12,6 +13,9 @@ async function main() {
 
 }
 function decoy(parser, port2) {
+  socketConnection.onPumpRequest((state) => {
+    isPumpToggle = state;
+  })
   parser.on("data", (UnFormatedData) => {
     let JsonFormatedData = JSON.parse(UnFormatedData);
     console.log(JsonFormatedData)
@@ -48,11 +52,19 @@ async function serialScan() {
 function handleWatering(Humninity, port1) {
   console.log(typeof (Humninity))
   if (Humninity['soildhum'] > 700) {
+    // PUMP
     port1.write("1")
   }
   else {
     console.log('GET sensor TEMP and HUM')
-    port1.write("0")
+    // STOP PUMP
+    if (isPumpToggle) {
+      port1.write("1")
+    } else {
+      port1.write("0")
+      isPumpToggle = false
+
+    }
   }
   //Firebase version
 
