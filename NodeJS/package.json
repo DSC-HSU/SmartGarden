@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node index.js",
     "debug-gcloud-server": "node src/gcloud_server/gcloud_socketIO_server.js"
   },
   "author": "",
